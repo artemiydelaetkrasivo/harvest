@@ -171,17 +171,19 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     msgDiv.textContent = '';
   }, 6000);
 
-  // Отправка формы на сервер
-  fetch('send_to_telegram.php', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: 'text=' + encodeURIComponent(
-      'Чшфвтуіі\n' +
-      'Ім\'я: ' + name + '\n' +
-      'Email: ' + email + '\n' +
-      'Повідомлення: ' + message
-    )
+fetch('send_to_telegram.php', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  body: 'text=' + encodeURIComponent(
+    'Чшфвтуіі\n' +
+    'Ім\'я: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    'Повідомлення: ' + message
+  )
+}).then(res => res.text())
+  .then(data => {
+    // Можно показать уведомление, если нужно
+    console.log(data);
   });
 
-});
 
