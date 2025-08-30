@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Контакти | СнекМайстер</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">СнекМайстер</div>
+    <nav>
+      <a href="index.html">Головна</a>
+      <a href="products.html">Продукція</a>
+      <a href="about.html">Про нас</a>
+      <a href="contacts.html" class="active">Контакти</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Контакти</h1>
+    <div class="contacts-main-block">
+      <div class="contacts-info-card">
+        <h2><span class="icon">&#128205;</span> Адреса виробництва:</h2>
+        <p>м. Київ, вул. Харківська, 12</p>
+        <h2><span class="icon">&#128222;</span> Телефон:</h2>
+        <p><a href="tel:+380441234567">+38 (044) 123-45-67</a></p>
+        <h2><span class="icon">&#128231;</span> Email:</h2>
+        <p><a href="mailto:info@snackmaster.ua">info@snackmaster.ua</a></p>
+        <h2><span class="icon">&#9200;</span> Графік роботи:</h2>
+        <p>Пн-Пт: 9:00–18:00</p>
+      </div>
+      <form class="contact-form nice-form" id="contactForm">
+        <h2>Зворотній зв'язок</h2>
+        <label for="name"><span class="icon">&#128100;</span> Ваше ім’я</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email"><span class="icon">&#128231;</span> Email</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message"><span class="icon">&#9998;</span> Повідомлення</label>
+        <textarea id="message" name="message" required></textarea>
+        <button type="submit">Відправити</button>
+        <div id="form-message"></div>
+      </form>
+    </div>
+    <div class="map-placeholder">
+      <img src="https://via.placeholder.com/500x220?text=Місце+на+мапі" alt="Карта">
+    </div>
+  </main>
+  <footer>
+    <div>© 2025 СнекМайстер. Всі права захищено.</div>
+    <div class="footer-links">
+      <a href="https://facebook.com" target="_blank">Facebook</a>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
