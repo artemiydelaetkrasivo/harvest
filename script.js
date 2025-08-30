@@ -1,4 +1,19 @@
 
+// Contact form feedback (no backend, just UI for now)
+document.addEventListener('DOMContentLoaded', function() {
+  var contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var msgDiv = document.getElementById('form-message');
+      msgDiv.textContent = 'Дякуємо! Ваше повідомлення відправлено.';
+      contactForm.reset();
+      setTimeout(function() {
+        msgDiv.textContent = '';
+      }, 5000);
+    });
+  }
+
   // Carousel logic with animation
   var carouselImages = [
     'https://hrups.com.ua/wp-content/uploads/2017/06/vasabi-430x430.jpg',
@@ -168,4 +183,3 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     )
   });
 });
-
