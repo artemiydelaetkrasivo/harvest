@@ -172,7 +172,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   }, 6000);
 
   // Отправка формы на сервер
-  fetch('https://artemiydelaetkrasivo.github.io/harvest/send_to_telegram.php', {
+  fetch('send_to_telegram.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: 'text=' + encodeURIComponent(
@@ -184,3 +184,4 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   });
 
 });
+
