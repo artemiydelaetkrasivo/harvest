@@ -1,70 +1,21 @@
- // Carousel logic with animation
-  var carouselImages = [
-    'https://hrups.com.ua/wp-content/uploads/2017/06/vasabi-430x430.jpg',
-    'https://hrups.com.ua/wp-content/uploads/2023/03/salo-girchytsja-430x430.jpg',
-    'https://hrups.com.ua/wp-content/uploads/2023/03/HRUPS00013_1-430x430.jpg',
-    'https://hrups.com.ua/wp-content/uploads/2023/03/HRUPS00029_1-430x430.jpg',
-    'https://hrups.com.ua/wp-content/uploads/2023/09/Frame-107-7-430x430.jpg'
-  ];
-  var carouselIndex = 2;
-  var carouselEl = document.getElementById('carousel');
-  var isAnimating = false;
+const track = document.getElementById('carouselTrack');
+const items = document.querySelectorAll('.carousel-item');
+let index = 0;
 
-  function renderCarousel(direction) {
-    if (!carouselEl) return;
+function showSlide(i) {
+  track.style.transform = `translateX(${-i * 100}%)`;
+}
 
-    // Clean old images
-    carouselEl.innerHTML = '';
+document.getElementById('carouselPrev').onclick = () => {
+  index = (index - 1 + items.length) % items.length;
+  showSlide(index);
+};
+document.getElementById('carouselNext').onclick = () => {
+  index = (index + 1) % items.length;
+  showSlide(index);
+};
 
-    // Show 5 images: far-left, left, center, right, far-right
-    for (var i = -2; i <= 2; i++) {
-      let imgIdx = (carouselIndex + i + carouselImages.length) % carouselImages.length;
-      let img = document.createElement('img');
-      img.src = carouselImages[imgIdx];
-      img.className = 'carousel-img';
-
-      if (i === 0) img.classList.add('center');
-      if (i === -1) img.classList.add('left');
-      if (i === 1) img.classList.add('right');
-      if (i === -2) img.classList.add('far-left');
-      if (i === 2) img.classList.add('far-right');
-
-      // For animation: add data-direction
-      if (direction) {
-        img.setAttribute('data-animate', direction);
-      }
-
-      carouselEl.appendChild(img);
-    }
-
-    // Run animation if direction is set
-    if (direction) {
-      isAnimating = true;
-      setTimeout(function() {
-        var imgs = carouselEl.querySelectorAll('img');
-        imgs.forEach(function(img) {
-          img.removeAttribute('data-animate');
-        });
-        isAnimating = false;
-      }, 600);
-    }
-  }
-
-  if (carouselEl) {
-    renderCarousel();
-
-    document.getElementById('carousel-prev').onclick = function() {
-      if (isAnimating) return;
-      carouselIndex = (carouselIndex - 1 + carouselImages.length) % carouselImages.length;
-      renderCarousel('left');
-    };
-    document.getElementById('carousel-next').onclick = function() {
-      if (isAnimating) return;
-      carouselIndex = (carouselIndex + 1) % carouselImages.length;
-      renderCarousel('right');
-    };
-  }
-});
+showSlide(index);
 
 // Страница товара
 document.addEventListener('DOMContentLoaded', function() {
@@ -181,6 +132,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     }, 6000);
   });
 });
+
 
 
 
