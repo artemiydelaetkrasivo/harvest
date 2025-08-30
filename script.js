@@ -163,7 +163,6 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     if (data === "ok") {
       msgDiv.textContent = 'Дякуємо! Ваше повідомлення відправлено.';
       msgDiv.classList.add('show');
-      this.reset();
     } else {
       msgDiv.textContent = 'Сталася помилка. Спробуйте ще раз.';
       msgDiv.classList.add('show');
@@ -182,5 +181,6 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     }, 6000);
   });
 });
+
 
 
