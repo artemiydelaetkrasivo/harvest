@@ -1,20 +1,4 @@
-
-// Contact form feedback (no backend, just UI for now)
-document.addEventListener('DOMContentLoaded', function() {
-  var contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var msgDiv = document.getElementById('form-message');
-      msgDiv.textContent = 'Дякуємо! Ваше повідомлення відправлено.';
-      contactForm.reset();
-      setTimeout(function() {
-        msgDiv.textContent = '';
-      }, 5000);
-    });
-  }
-
-  // Carousel logic with animation
+ // Carousel logic with animation
   var carouselImages = [
     'https://hrups.com.ua/wp-content/uploads/2017/06/vasabi-430x430.jpg',
     'https://hrups.com.ua/wp-content/uploads/2023/03/salo-girchytsja-430x430.jpg',
@@ -157,33 +141,46 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
+
   var name = document.getElementById('name').value.trim();
   var email = document.getElementById('email').value.trim();
   var message = document.getElementById('message').value.trim();
   var msgDiv = document.getElementById('form-message');
 
-  msgDiv.textContent = 'Дякуємо! Ваше повідомлення відправлено.';
-  msgDiv.classList.add('show');
-  this.reset();
-
-  setTimeout(function() {
-    msgDiv.classList.remove('show');
-    msgDiv.textContent = '';
-  }, 6000);
-
-fetch('send_to_telegram.php', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-  body: 'text=' + encodeURIComponent(
-    'Чшфвтуіі\n' +
-    'Ім\'я: ' + name + '\n' +
-    'Email: ' + email + '\n' +
-    'Повідомлення: ' + message
-  )
-}).then(res => res.text())
+  // Відправка на сервер
+  fetch('send_to_telegram.php', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    body: 'text=' + encodeURIComponent(
+      'Нове повідомлення:\n' +
+      'Ім\'я: ' + name + '\n' +
+      'Email: ' + email + '\n' +
+      'Повідомлення: ' + message
+    )
+  })
+  .then(res => res.text())
   .then(data => {
-    // Можно показать уведомление, если нужно
-    console.log(data);
+    if (data === "ok") {
+      msgDiv.textContent = 'Дякуємо! Ваше повідомлення відправлено.';
+      msgDiv.classList.add('show');
+      this.reset();
+    } else {
+      msgDiv.textContent = 'Сталася помилка. Спробуйте ще раз.';
+      msgDiv.classList.add('show');
+    }
+    setTimeout(function() {
+      msgDiv.classList.remove('show');
+      msgDiv.textContent = '';
+    }, 6000);
+  })
+  .catch(() => {
+    msgDiv.textContent = 'Сталася помилка. Спробуйте ще раз.';
+    msgDiv.classList.add('show');
+    setTimeout(function() {
+      msgDiv.classList.remove('show');
+      msgDiv.textContent = '';
+    }, 6000);
   });
+});
 
 
