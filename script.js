@@ -219,7 +219,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   }, 6000);
 
   // Отправка формы на сервер
-  fetch('send_to_telegram.php', {
+fetch('https://harvest-xi.vercel.app/send_to_telegram.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: 'text=' + encodeURIComponent(
@@ -229,4 +229,5 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
       'Повідомлення: ' + message
     )
   });
+
 });
