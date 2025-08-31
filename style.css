@@ -509,6 +509,9 @@ footer {
     padding-right: 0;
   }
   .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 1.2rem;
     text-align: center;
     padding: 16px 0 8px 0;
@@ -523,28 +526,31 @@ footer {
     width: 100vw;
     min-width: 100vw;
     max-width: 100vw;
-    padding: 0;
+    padding: 0 4vw;
     margin: 0 auto;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
   }
   .carousel {
-    width: 96vw !important;
-    max-width: 96vw !important;
+    width: 50vw !important;
+    max-width: 50vw !important;
     min-width: 0 !important;
-    margin: 0 auto !important;
+    margin: 0 !important;
     padding: 0 !important;
     position: relative;
+    height: 180px;
   }
   .carousel-img.center {
     width: 160px !important;
     height: 110px !important;
   }
   .carousel-btn {
-    font-size: 2.2rem !important;
-    padding: 12px 18px !important;
-    margin: 0 2vw !important;
+    font-size: 1.8rem !important;
+    padding: 10px 14px !important;
+    margin: 0 3vw !important;
+    flex-shrink: 0;
   }
   .hero-text, .features, .cta, .features-grid, .feature {
     max-width: 96vw;
@@ -600,7 +606,7 @@ html, body {
   font-size: 2.2rem;
   color: #7d6f22;
   position: absolute;
-  right: 22px;
+  left: 22px;
   top: 18px;
   z-index: 21;
   cursor: pointer;
@@ -649,5 +655,10 @@ nav {
     position: relative;
   }
   .logo {
-    padding-right: 60px; /* чтобы бургер не налегал на лого */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 16px 0 8px 0;
   }
