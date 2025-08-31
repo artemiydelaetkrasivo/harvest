@@ -1,4 +1,19 @@
+document.addEventListener('DOMContentLoaded', function() {
+  var burger = document.getElementById('burger');
+  var nav = document.getElementById('mainNav');
+  burger.addEventListener('click', function() {
+    nav.classList.toggle('open');
+    burger.classList.toggle('active');
+  });
 
+  // Закрытие меню по клику вне его
+  document.addEventListener('click', function(e) {
+    if (!nav.contains(e.target) && e.target !== burger) {
+      nav.classList.remove('open');
+      burger.classList.remove('active');
+    }
+  });
+});
 // Contact form feedback (no backend, just UI for now)
 document.addEventListener('DOMContentLoaded', function() {
   var contactForm = document.getElementById('contactForm');
@@ -65,22 +80,54 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 600);
     }
   }
+if (carouselEl) {
+  renderCarousel();
 
-  if (carouselEl) {
-    renderCarousel();
+  document.getElementById('carousel-prev').onclick = function() {
+    if (isAnimating) return;
+    carouselIndex = (carouselIndex - 1 + carouselImages.length) % carouselImages.length;
+    renderCarousel('left');
+  };
+  document.getElementById('carousel-next').onclick = function() {
+    if (isAnimating) return;
+    carouselIndex = (carouselIndex + 1) % carouselImages.length;
+    renderCarousel('right');
+  };
 
-    document.getElementById('carousel-prev').onclick = function() {
-      if (isAnimating) return;
-      carouselIndex = (carouselIndex - 1 + carouselImages.length) % carouselImages.length;
-      renderCarousel('left');
-    };
-    document.getElementById('carousel-next').onclick = function() {
-      if (isAnimating) return;
+  // === Автопрокрутка (добавь этот блок) ===
+  var autoCarousel = setInterval(function() {
+    if (!isAnimating) {
       carouselIndex = (carouselIndex + 1) % carouselImages.length;
       renderCarousel('right');
-    };
+    }
+  }, 2500); // каждые 3.5 секунды
+
+  // Остановка автопрокрутки при ручном переключении (по желанию)
+  function resetAutoCarousel() {
+    clearInterval(autoCarousel);
+    autoCarousel = setInterval(function() {
+      if (!isAnimating) {
+        carouselIndex = (carouselIndex + 1) % carouselImages.length;
+        renderCarousel('right');
+      }
+    }, 3500);
   }
+  document.getElementById('carousel-prev').onclick = function() {
+    if (isAnimating) return;
+    carouselIndex = (carouselIndex - 1 + carouselImages.length) % carouselImages.length;
+    renderCarousel('left');
+    resetAutoCarousel();
+  };
+  document.getElementById('carousel-next').onclick = function() {
+    if (isAnimating) return;
+    carouselIndex = (carouselIndex + 1) % carouselImages.length;
+    renderCarousel('right');
+    resetAutoCarousel();
+  };
+}
+  
 });
+
 
 // Страница товара
 document.addEventListener('DOMContentLoaded', function() {
