@@ -3,14 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var nav = document.getElementById('mainNav');
   burger.addEventListener('click', function() {
     nav.classList.toggle('open');
-    burger.classList.toggle('active');
   });
-
-  // Закрытие меню по клику вне его
   document.addEventListener('click', function(e) {
     if (!nav.contains(e.target) && e.target !== burger) {
       nav.classList.remove('open');
-      burger.classList.remove('active');
     }
   });
 });
@@ -219,7 +215,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   }, 6000);
 
   // Отправка формы на сервер
-fetch('https://harvest-xi.vercel.app/send_to_telegram.php', {
+  fetch('send_to_telegram.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: 'text=' + encodeURIComponent(
@@ -229,5 +225,4 @@ fetch('https://harvest-xi.vercel.app/send_to_telegram.php', {
       'Повідомлення: ' + message
     )
   });
-
 });
