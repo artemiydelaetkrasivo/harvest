@@ -96,7 +96,7 @@ if (carouselEl) {
       carouselIndex = (carouselIndex + 1) % carouselImages.length;
       renderCarousel('right');
     }
-  }, 2500); // каждые 3.5 секунды
+  }, 1800); // каждые 3.5 секунды
 
   // Остановка автопрокрутки при ручном переключении (по желанию)
   function resetAutoCarousel() {
@@ -106,7 +106,7 @@ if (carouselEl) {
         carouselIndex = (carouselIndex + 1) % carouselImages.length;
         renderCarousel('right');
       }
-    }, 3500);
+    }, 1800);
   }
   document.getElementById('carousel-prev').onclick = function() {
     if (isAnimating) return;
@@ -198,31 +198,3 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  var name = document.getElementById('name').value.trim();
-  var email = document.getElementById('email').value.trim();
-  var message = document.getElementById('message').value.trim();
-  var msgDiv = document.getElementById('form-message');
-
-  msgDiv.textContent = 'Дякуємо! Ваше повідомлення відправлено.';
-  msgDiv.classList.add('show');
-  this.reset();
-
-  setTimeout(function() {
-    msgDiv.classList.remove('show');
-    msgDiv.textContent = '';
-  }, 6000);
-
-  // Отправка формы на сервер
-  fetch('send_to_telegram.php', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: 'text=' + encodeURIComponent(
-      'Чшфвтуіі\n' +
-      'Ім\'я: ' + name + '\n' +
-      'Email: ' + email + '\n' +
-      'Повідомлення: ' + message
-    )
-  });
-});
